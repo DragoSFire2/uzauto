@@ -22,26 +22,14 @@
     });
 
     function initLoad() {
-      $http.post('/b/ap/stream/ph$account_model', {}, {
-        headers: {
-          "oauth2_token": localStorage.getItem("token")
-        }
-      }).then(function (result) {
-        var r = result.data;
-        d.sms_confirm = r.order_confirm_avail == 'Y';
-        d.inn_sha = r.inn_sha;
-
-
-        d.passport_sha = r.passport_sha;
-        d.reconfirm_time = r.reconfirm_time;
-      });
+     
       if ($rootScope.a.user.inn) {
         d.inn = $rootScope.a.user.inn
       }
       if ($rootScope.a.user.natural_client.pin) {
         d.inn = `${d.inn} / ${$rootScope.a.user.natural_client.pin}`
       }
-      $http.post('/b/ap/stream/ph$load_orders', {}, {
+      $http.post('/t/ap/stream/ph$load_orders', {}, {
         headers: {
           "oauth2_token": localStorage.getItem("token")
         }
