@@ -55,7 +55,7 @@
           //x.status_name = status
           x.paid_amount = bNumber(x.paid_amount);
           x.remain_amount = bNumber(x.remain_amount);
-          x.photo_src = imageUrl(x.photo_sha);
+          x.photo_src = x.photo_sha666//imageUrl(x.photo_sha);
           console.log(x)
           _.each(x.messages, (m) => d.messages.push({
             order_code: x.code,
