@@ -12,16 +12,8 @@
 
     q.models = [];
 
-    $.get('resources/data/models.json', function (result) {
-      previewData = result || {};
+    previewData = {};
       models();
-    }).fail(function (result) {
-      console.error(result);
-      $rootScope.a.headerTransparent = false;
-      q.hide_preview = true;
-      models();
-    });
-
     function models() {
       $http.post('/t/ap/stream/ph&models', {
         "is_web": "Y",
@@ -35,7 +27,6 @@
         _.each(result.data, function (x, i) {
           var min_price = _.reduce(x.modifications, (memo, m) => Math.min(memo || m.price, m.price), null);
           x.min_price = min_price
-          console.log(x.photo_sha666)
           q.models.push(_.extend({
             photo_sha666: x.photo_sha666,
             chosen: i % 4 == 3
